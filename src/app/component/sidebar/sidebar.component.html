@@ -1,0 +1,25 @@
+<nav class="sidebar pointer">
+    <div class="text">
+        ShopBridge
+    </div>
+    <ul>
+        <li><a>
+                <div class="side-bar-tab" (click)="selectTab('Product')" routerLink="/"
+                    [ngClass]="{'active-tab':activeTab == 'Product'}">
+                    <div class="tab-icon"> <i class="fa fa-gift" aria-hidden="true"></i></div>
+                    <div class="tab-text">Product</div>
+                </div>
+            </a>
+        </li>
+
+        <li routerLink="/login"><a>
+            <div class="side-bar-tab" (click)="logout()">
+                <div class="tab-icon"><i class="fa fa-power-off" aria-hidden="true"></i></div>
+                <div class="tab-text">Logout</div>
+            </div>
+        </a>
+    </li>
+
+
+    </ul>
+</nav>

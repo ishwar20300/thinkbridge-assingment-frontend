@@ -1,0 +1,68 @@
+.login_block {
+    margin: auto;
+    width: 500px;
+    padding-top: 71px;
+}
+
+.login_head{
+
+    color: white;
+    text-align: center;
+    margin-top: 50%;
+}
+
+.logo{
+    width: 50%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 9rem;
+}
+.sign_label {
+    text-align: center;
+    margin-bottom: 45px;
+    a {
+        font-size: 25px;
+        border-bottom: 4px solid #f5b900;
+        padding-bottom: 10px;
+        font-weight: 800;
+        font-family: Segoe UI;
+    }
+}
+.indicator {
+    height: 5px;
+    background-color: #f5b900;
+}
+.login_labels {
+    font-size: 13px;
+    color: #b19fdb !important;
+}
+.login_input {
+    border: 0;
+    border-bottom: 1px solid #9e9e9e !important;
+    border-radius: 0;
+}
+.left-master-wrapper {
+    background-color: #0c6a66;
+    height: 100vh;
+    min-height: 100vh !important;
+}
+.sign_btn {
+    margin-top: 21px;
+    height: 60px;
+    background-color: #00b7b1;
+    font-size: 21px;
+    border-color: #00b7b1;
+}
+.form-control {
+    margin: 0 0 31px 0;
+}
+
+
+
+.search_secation{
+    position: relative;
+}

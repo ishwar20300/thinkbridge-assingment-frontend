@@ -1,0 +1,132 @@
+<section class="page_color">
+    <div class="container-fluid ">
+
+        <div class="row ">
+            <div class="col-12 col-sm-3 col-md-12 col-xl-12">
+                <div class="top-heading theading">
+                    <h5 class="text-center">Product</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mrg0 filter_card">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 pad0">
+                <div class="filter_row">
+                    <input type="text" class="search_bar" placeholder="Search product" [(ngModel)]="searchBy"
+                        (ngModelChange)="search()">
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-2 pad0">
+
+                <div class="filter_row">
+                    <select class="form-control select_list_full" name="categoryId" #categoryId="ngModel"
+                        [(ngModel)]="pagination.catId" placeholder="Select Category" (change)="onSelectCategory()"
+                        placeholder="Select Category">
+                        <option [value]="null" selected disabled>Select Category</option>
+                        <option *ngFor="let category of categories" [value]="category.categoryId">{{category.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-2 pad0">
+                <div class="display-flex">
+                    <div class="filter_action_icon">
+                        <i class="icofont-refresh"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-2 pad0">
+
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-2 pad0">
+                <div class="text-right" *ngIf="list?.length > 0">
+                    <button class="btn btn-primary add_button_list filter_row" routerLink="add"> + Add Product</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-xl-12">
+                <div class="table_grid" *ngIf="list?.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="seq_no">Product No</th>
+                                <th>Images</th>
+                                <th>Name</th>
+                                <th>Categories</th>
+                                <th>Size</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Stock</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of list | paginate: { id: 'paginationId', itemsPerPage: pagination.numPerPage, 
+                        currentPage: pagination.pageNum ,totalItems:recordCount};let i=index;">
+                                <td class="text-center seq_no"> <a>{{item.productNo}}</a></td>
+                                <td>
+                                    <div class="image-div">
+                                        <img class="product-image"
+                                            src="{{appConstant.SERVER_URLS['GET_IMAGE']}}{{item.image}}"
+                                            onError="this.src='assets/img/img/error-image.webp'"
+                                            image-lazy-background-image="true" image-lazy-loader="lines">
+                                    </div>
+                                </td>
+                                <td style="width: 200px;">{{item.name}} </td>
+                                <td style="width: 200px;">
+                                    <div class="category"><span
+                                            *ngFor="let cat of item.category;let last=last">{{cat.name}}<span
+                                                *ngIf="!last">,</span></span></div>
+                                </td>
+                                <td>
+                                    <select class="form-control" [(ngModel)]="item.finalPrice">
+                                        <option *ngFor="let unit of item.productUnit;let ind=index"
+                                            [value]="unit.finalPrice">{{unit.size}} {{unit.unit}}</option>
+                                    </select>
+                                </td>
+                                <td>₹{{item.finalPrice}} </td>
+                                <td>
+                                    <label class="switch">
+                                        <input type="checkbox" name="status" [(ngModel)]="item.status"
+                                            (change)="changeStatus(item.productId)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="switch">
+                                        <input type="checkbox" name="status" [(ngModel)]="item.inStock"
+                                            (change)="changeStock(item.productId)">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class="action">
+                                        <i class="fa fa-pencil" routerLink="add"
+                                            [queryParams]="{productId: item.productId}"></i> &nbsp;&nbsp;
+                                        <i class="fa fa-trash" (click)="deleteProduct(item.productId,i)"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination_box" *ngIf="list?.length > 10">
+                    <div class="total_count">Total Record</div>
+                    <div class="pagination_container">
+                        <pagination-controls (pageChange)="pageChanged($event)" id="paginationId"></pagination-controls>
+                    </div>
+                </div>
+
+                <div class="emptyStage" *ngIf="list?.length <= 0 && !isLoading">
+                    <img class="t-icon pointer edit-prod" src="assets/img/icon/no-data.png">
+                    <div class="no-more">No Product Found</div>
+                    <div class="empty-stage-button" routerLink="add">Add Product</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

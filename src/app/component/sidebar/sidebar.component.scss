@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+  color: white;
+}
+
+.sidebar {
+  position: fixed;
+  width: 17%;
+  height: 100%;
+  left: 0;
+  background: #00124d;
+}
+
+.sidebar .text {
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 65px;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: 41px;
+  margin-top: 9px;
+}
+
+nav ul {
+  height: 100%;
+  width: 100%;
+  list-style: none;
+}
+
+nav ul li {
+  line-height: 38px;
+  margin-bottom: 16px;
+  // border-bottom: 1px solid rgb(255,255,255,0.1);
+}
+nav ul li a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  padding-left: 18px;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  border-left: 3px solid transparent;
+}
+
+// nav ul li a:hover{
+//     color: cyan;
+//     background: #421212;
+//     border-left-color: cyan ;
+// }
+
+nav ul ul {
+  position: static;
+    //  display: none;
+  margin-top: 15px;
+}
+
+nav ul ul li {
+  line-height: 30px;
+  border-bottom: none;
+}
+nav ul ul li a {
+  font-size: 14px;
+  color: #e6e6e6;
+  padding-left: 51px;
+}
+
+.downwrd-icon {
+  position: absolute;
+  top: 40%;
+  right: 15px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  transition: transform 0.4s;
+}
+
+// nav ul li a:hover .downwrd-icon{
+//     transform:  translateY(-50%) rotate(-180deg);
+// }
+
+/*********************USER IMAGE***********************/
+.user-image {
+  width: 35px;
+  height: 35px;
+  border-radius: 32px;
+}
+
+.side-bar-tab {
+  width: 88%;
+  border-radius: 10px;
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+}
+
+.active-tab {
+  background: #0761c1;
+  }
+
+
+
+.side-bar-tab:hover {
+    background: #030f38;
+  }
+
+.tab-icon {
+  font-size: 25px;
+  width: 38%;
+  text-align: center;
+}
+.tab-text {
+  width: 70%;
+}
+
+.subtab-active{
+  border-left: solid 2px gray;
+  background: #010e35;
+}

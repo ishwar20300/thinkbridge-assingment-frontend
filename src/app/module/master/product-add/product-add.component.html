@@ -1,0 +1,411 @@
+<section class="back">
+    <div class="container container-pad">
+        <form name="appForm" #appForm="ngForm" novalidate (ngSubmit)="appForm.valid && submit(appForm)">
+            <div class="row">
+                <div class="col-12 col-xl-12">
+                    <div class="form_heading">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+                                <div class="form_heading">
+                                    Add Product
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-1">
+
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-3">
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-info" routerLink="/">
+                                        Cancel</button>&nbsp;
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card form_card">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="row">
+                            <!-----------FORM 1ST SECTION----------------->
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-4 col-form-label">Category <span
+                                            class="asterisk">*</span> </label>
+                                    <div class="col-sm-6">
+                                        <div>
+                                            <select class="form-control select_list_full" name="categoryId"
+                                                #categoryId="ngModel" [(ngModel)]="formData.parentCatId" required
+                                                placeholder="Select Category" (change)="onSelectCategory()">
+                                                <option *ngFor="let category of parentCategoryList"
+                                                    [value]="category.categoryId">{{category.name}}</option>
+                                            </select>
+                                            <div *ngIf="categoryId.valid || categoryId.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="categoryId.errors && categoryId.errors.required"
+                                                    class="validationError">
+                                                    Category required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-4 col-form-label">Product Name <span
+                                            class="asterisk">*</span> </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="name" #name="ngModel"
+                                            [(ngModel)]="formData.name" required placeholder="Enter Product Name">
+                                        <div *ngIf="name.valid || name.touched || appForm.submitted"
+                                            class="validationError">
+                                            <div *ngIf="name.errors && name.errors.required" class="validationError">
+                                                Product name required
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-----------FORM 2ND SECTION----------------->
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-4 col-form-label">Brand <span
+                                            class="asterisk">*</span> </label>
+                                    <div class="col-sm-6">
+                                        <div>
+                                            <select class="form-control select_list_full" name="brandId"
+                                                #brandId="ngModel" [(ngModel)]="formData.brandId" required
+                                                placeholder="Select Brand">
+                                                <option *ngFor="let brand of brandList" [value]="brand.brandId">
+                                                    {{brand.name}}</option>
+                                            </select>
+                                            <div *ngIf="brandId.valid || brandId.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="brandId.errors && brandId.errors.required"
+                                                    class="validationError">
+                                                    Brand required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-6 col-form-label">Product Status</label>
+                            <div class="col-sm-4">
+                                <label class="switch">
+                                    <input type="checkbox" name="status" #status="ngModel"
+                                        [(ngModel)]="formData.status">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-6 col-form-label">Stock Status</label>
+                            <div class="col-sm-4">
+                                <label class="switch">
+                                    <input type="checkbox" name="inStock" #inStock="ngModel"
+                                        [(ngModel)]="formData.inStock">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                        <div class="form-group row">
+                            <label for="inputPassword3" class="col-sm-6 col-form-label">Show in Recommandations</label>
+                            <div class="col-sm-4">
+                                <label class="switch">
+                                    <input type="checkbox" name="recommendation" #recommendation="ngModel"
+                                        [(ngModel)]="formData.recommendation">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card form_card">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                        <div class="dish-pic form-group">
+                            <div class="image-div" (click)="fileInput.click()">
+                                <img class="img1" src="assets/img/img/img-temp.jpg">
+                            </div>
+                            <input style="display: none" type="file" (change)="changeListener($event)" #fileInput>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3"
+                        *ngFor="let item of formData.productImages;let i=index" (click)="deleteProdImage(i,item)">
+                        <div class="dish-pic form-group">
+                            <div class="image-div1 img-brd">
+                                <img class="img1" src="{{item.base64}}" *ngIf="item.base64">
+                                <img class="img1" *ngIf="item.image"
+                                    src="{{appConstant.SERVER_URLS['GET_IMAGE']}}{{item.image}}" alt="Card image cap"
+                                    onError="this.src='assets/img/img/error-image.webp'"
+                                    image-lazy-background-image="true" image-lazy-loader="lines">
+                                <div class="img-edit"><i class="fa fa-pencil" aria-hidden="true"></i> Remove
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card form_card">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <h6>Product Pricing</h6>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>SrNo</th>
+                                    <th>Unit</th>
+                                    <th>Size</th>
+                                    <th>Mrp</th>
+                                    <th>Selling Price</th>
+                                    <th>Stock</th>
+                                    <th>Tax(%)</th>
+                                    <th>Offerable</th>
+                                    <th>Discount Type</th>
+                                    <th>Discount Value</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let pricing of productPrice;let i = index">
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>
+                                        <div>
+                                            <select class="form-control select_list" name="unit{{i}}" #unit="ngModel"
+                                                [(ngModel)]="productPrice[i].unit" required placeholder="Select UOM"
+                                                required>
+                                                <option value="Gm">GM</option>
+                                                <option value="Kg">KG</option>
+                                                <option value="Pouch">Pouch</option>
+                                                <option value="Liter">Liter</option>
+                                            </select>
+                                            <div *ngIf="unit.valid || unit.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="unit.errors && unit.errors.required"
+                                                    class="validationError">
+                                                    Unit required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <input type="number" class="form-control" name="size{{i}}" #size="ngModel"
+                                                [(ngModel)]="productPrice[i].size" placeholder="Enter Size" required>
+                                            <div *ngIf="size.valid || size.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="size.errors && size.errors.required"
+                                                    class="validationError">
+                                                    Size required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <input type="number" class="form-control" name="mrp{{i}}" #mrp="ngModel"
+                                                [(ngModel)]="productPrice[i].mrp" placeholder="₹ 00 " required>
+                                            <div *ngIf="mrp.valid || mrp.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="mrp.errors && mrp.errors.required" class="validationError">
+                                                    Mrp required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <input type="number" class="form-control" name="sellingPrice{{i}}"
+                                                #sellingPrice="ngModel" [(ngModel)]="productPrice[i].sellingPrice"
+                                                placeholder="₹ 00" (ngModelChange)="calulateFinalPrice(i)" required>
+                                            <div *ngIf="sellingPrice.valid || sellingPrice.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="sellingPrice.errors && sellingPrice.errors.required"
+                                                    class="validationError">
+                                                    Selling Price required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div>
+                                            <input type="number" class="form-control" name="stockQuantity{{i}}"
+                                                #stockQuantity="ngModel" [(ngModel)]="productPrice[i].stockQuantity"
+                                                placeholder="00" required>
+                                            <div *ngIf="stockQuantity.valid || stockQuantity.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="stockQuantity.errors && stockQuantity.errors.required"
+                                                    class="validationError">
+                                                    Stock required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div>
+                                            <input type="number" class="form-control" name="taxPercent{{i}}"
+                                                #taxPercent="ngModel" [(ngModel)]="productPrice[i].taxPercent"
+                                                placeholder="0%" (ngModelChange)="calulateFinalPrice(i)">
+                                            <!-- <div *ngIf="category.valid || category.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="category.errors && category.errors.required"
+                                                    class="validationError">
+                                                    Category required
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div><input type="checkbox" [(ngModel)]="productPrice[i].offerable"
+                                                name="offerable{{i}}" #offerable="ngModel"
+                                                (ngModelChange)="calulateFinalPrice(i)"></div>
+                                    </td>
+
+                                    <td *ngIf="productPrice[i].offerable">
+                                        <div>
+                                            <select class="form-control select_list" name="discountType{{i}}"
+                                                #discountType="ngModel" [(ngModel)]="productPrice[i].discountType"
+                                                placeholder="Discount Type" required>
+                                                <option selected>None</option>
+                                                <option value="1">in %</option>
+                                                <option value="2">in ₹</option>
+                                            </select>
+
+                                            <div *ngIf="discountType.valid || discountType.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="discountType.errors && discountType.errors.required"
+                                                    class="validationError">
+                                                    Discount Type required
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                    <td *ngIf="productPrice[i].offerable">
+                                        <div>
+                                            <input type="text" class="form-control" name="discountValue{{i}}"
+                                                #discountValue="ngModel" [(ngModel)]="productPrice[i].discountValue"
+                                                required placeholder="00" (ngModelChange)="calulateFinalPrice(i)">
+                                            <div *ngIf="discountValue.valid || discountValue.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="discountValue.errors && discountValue.errors.required"
+                                                    class="validationError">
+                                                    Discount Value required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                            
+                                    <td colspan="3">
+                                        <div><input type="checkbox" [(ngModel)]="productPrice[i].inStock"
+                                                name="inStock{{i}}" #inStock="ngModel"> In-stock</div>
+                                    </td>
+                                    <td colspan="15" class="final_row"> <span class="final_head">Final Price</span>
+                                        &nbsp;&nbsp;<span class="final_value">₹{{productPrice[i].finalPrice}}</span>
+                                        <span class="delete-icon" (click)="removePrice(i,pricing)"> <i
+                                                class="fa fa-trash cursorPointer"></i></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" (click)="newPrice()">
+                        <table>
+                            <tbody>
+                                <tr class="add_new_row">
+                                    <td colspan="15">+ Add New</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card form_card">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <h6>Product Description</h6>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>SrNo</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let about of productInfo;let i = index">
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>
+                                        <div>
+                                            <input type="text" class="form-control" name="title{{i}}" #title="ngModel"
+                                                [(ngModel)]="productInfo[i].title" required placeholder="Enter Title">
+                                            <div *ngIf="title.valid || title.touched || appForm.submitted"
+                                                class="validationError">
+                                                <div *ngIf="title.errors && title.errors.required"
+                                                    class="validationError">
+                                                    Title required
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <textarea rows="2" cols="80" class="form-control text-mrg"
+                                            placeholder="Here can be product description" value="Mike"
+                                            [(ngModel)]="productInfo[i].description" name="description{{i}}"
+                                            #description="ngModel" required></textarea>
+
+                                        <div *ngIf="description.valid || description.touched || appForm.submitted"
+                                            class="validationError">
+                                            <div *ngIf="description.errors && description.errors.required"
+                                                class="validationError">
+                                                Description required
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="delete-icon" (click)="removeAbout(i,about)"> <i
+                                                class="fa fa-trash cursorPointer"></i></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" (click)="newAbout()">
+                        <table>
+                            <tbody>
+                                <tr class="add_new_row">
+                                    <td colspan="15">+ Add New</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
